@@ -59,3 +59,5 @@ export const fetchNoteById = async(id: number): Promise<Note> => {
 });
 return  response.data;
 };
+
+export const tags: Tag[] = ['Todo', 'Work', 'Personal', 'Meeting', 'Shopping'];

@@ -1,12 +1,15 @@
 import css from './SideBarNotes.module.css'
-import Link from 'next/link'
-import { Tag } from '@/types/note'
-
-const tags: Tag[] = ['Todo', 'Work', 'Personal', 'Meeting', 'Shopping']
+import Link from 'next/link';
+import { tags } from '@/lib/api';
 
 const SideBarNotes = () => {
     return (
           <ul className={css.menuList}>
+            <li className={css.menuItem}>
+              <Link href="/notes/action/create" className={css.menuLink}>
+              Create note
+              </Link>
+            </li>
             <li className={css.menuItem}>
             <Link href={`/notes/filter/all`} className={css.menuLink}>
             All notes

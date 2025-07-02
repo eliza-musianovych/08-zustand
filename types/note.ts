@@ -7,7 +7,7 @@ export interface Note {
     updatedAt: string
 };
 
-export interface NewNote {
+export type NewNote = {
     title: string;
     content: string;
     tag: 'Todo' | 'Work' | 'Personal' | 'Meeting' | 'Shopping';

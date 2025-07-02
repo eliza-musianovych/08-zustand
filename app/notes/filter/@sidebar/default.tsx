@@ -1,4 +1,4 @@
-import SideBarNotes from "@/components/SideBarNotes/SideBarNotes"
+import SideBarNotes from "@/components/SideBarNotes/SideBarNotes";
 
 const NotesSidebar = async () => {
     return <SideBarNotes />

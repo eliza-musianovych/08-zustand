@@ -2,7 +2,6 @@
 
 import css from './App.module.css'
 import NoteList from '@/components/NoteList/NoteList'
-import Modal from '@/components/Modal/Modal'
 import Pagination from '@/components/Pagination/Pagination'
 import SearchBox from '@/components/SearchBox/SearchBox'
 import type { Note, Tag } from '@/types/note';
@@ -10,7 +9,7 @@ import { useState } from 'react'
 import { useDebounce } from 'use-debounce';
 import { fetchNotes } from '@/lib/api';
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
-import NoteForm from '@/components/NoteForm/NoteForm';
+import Link from 'next/link';
 
 interface NoteData {
   notes: Note[],
@@ -31,8 +30,6 @@ export default function NotesClient({
   initialNotes }: NotesClientProps) {
   const [query, setQuery] = useState(initialQuery);
   const [page, setPage] = useState(initialPage);
-  const [isCreateNote, setIsCreateNote] = useState<boolean>(false);
-
   const updateQuery = (event: React.ChangeEvent<HTMLInputElement>) => {
         setQuery(event.target.value);
         setPage(1);
@@ -47,9 +44,6 @@ export default function NotesClient({
     initialData: initialNotes,
   });
 
-  const handleClick = () => setIsCreateNote(true);
-  const handleClose = () => setIsCreateNote(false)
-
     return (
         <div className={css.app}>
 	      <header className={css.toolbar}>
@@ -61,16 +55,11 @@ export default function NotesClient({
           totalPages={data?.totalPages}
           onPageChange={setPage}
           />}
-          <button onClick={handleClick} className={css.button}>Create note +</button>
+          <Link href="/notes/action/create" className={css.button}>Create note +</Link>
         </header>
         {isSuccess && 
         data.notes.length > 0 && 
         <NoteList notes={data.notes} />}
-        {isCreateNote && (
-        <Modal onClose={handleClose}>
-          <NoteForm onClose={handleClose}/>
-        </Modal>
-        )}
     </div>
     )
 }
