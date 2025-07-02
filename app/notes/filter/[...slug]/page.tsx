@@ -15,7 +15,7 @@ export async function generateMetadata({ params }:Props) {
     openGraf: {
       title: `${tag} notes`,
       description: slug[0] === 'all' ? "All notes in Note Hub" : `All notes with tag ${tag}`,
-      url: "http://localhost:3000/notes/filter/[...slug]/page.tsx",
+      url: slug[0] === 'all' ? `https://08-zustand-eypfyygwr-yelyzaveta-musianovychs-projects.vercel.app/notes/filter/all`: `https://08-zustand-eypfyygwr-yelyzaveta-musianovychs-projects.vercel.app/notes/filter/${tag}`,
       images: "https://ac.goit.global/fullstack/react/notehub-og-meta.jpg",
     }
   }
