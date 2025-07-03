@@ -12,7 +12,7 @@ export async function generateMetadata({ params }:Props): Promise<Metadata> {
   const note = await fetchNoteById(Number(id));
     return {
     title: `Note: ${note.title}`,
-    description: note.content.slice(0, 20),
+    description: note.content.slice(0, 30),
     openGraph: {
       title: `Note: ${note.title}`,
       description: note.content.slice(0, 20),
