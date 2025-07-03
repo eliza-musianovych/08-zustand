@@ -1,22 +1,30 @@
 import { QueryClient, HydrationBoundary, dehydrate } from "@tanstack/react-query";
 import { fetchNoteById } from "@/lib/api";
 import NoteDetailsClient from "./NoteDetails.client";
+import { Metadata } from "next";
 
 type Props = {
     params: Promise<{ id: string }>;
 };
 
-export async function generateMetadata({ params }:Props) {
+export async function generateMetadata({ params }:Props): Promise<Metadata> {
   const { id } = await params;
   const note = await fetchNoteById(Number(id));
     return {
     title: `Note: ${note.title}`,
     description: note.content.slice(0, 20),
-    openGraf: {
+    openGraph: {
       title: `Note: ${note.title}`,
       description: note.content.slice(0, 20),
       url: `https://08-zustand-eypfyygwr-yelyzaveta-musianovychs-projects.vercel.app/notes/${id}`,
-      images: "https://ac.goit.global/fullstack/react/notehub-og-meta.jpg",
+      images: [
+        {
+          url: "https://ac.goit.global/fullstack/react/notehub-og-meta.jpg",
+          width: 1200,
+          height: 630,
+          alt: note.title,
+        },
+      ],
     }
   }
 }

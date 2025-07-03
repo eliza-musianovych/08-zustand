@@ -10,9 +10,16 @@ export const metadata: Metadata = {
         title: "Create new note | Note Hub",
         description: "Easily create a new note with a title, content, and tag to stay organized.",
         url: "https://08-zustand-eypfyygwr-yelyzaveta-musianovychs-projects.vercel.app/notes/action/create",
-        images: "https://ac.goit.global/fullstack/react/notehub-og-meta.jpg",
+        images: [
+        {
+          url: "https://ac.goit.global/fullstack/react/notehub-og-meta.jpg",
+          width: 1200,
+          height: 630,
+          alt: "Create a new note in Note Hub - input form preview",
+        },
+      ],
     }
-}
+};
 
 const CreateNote = () => {
     return (
